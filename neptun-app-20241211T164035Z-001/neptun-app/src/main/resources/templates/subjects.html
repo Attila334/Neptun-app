@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <title>Tárgyfelvétel</title>
+  <link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+<h1>Elérhető tárgyak</h1>
+
+<ul>
+  <li th:each="subject : ${subjects}">
+    <span th:text="${subject.name}"></span>
+    <form th:action="@{/api/subjects/enroll}" method="post" style="display: inline;">
+      <input type="hidden" th:value="${subject.id}" name="subjectId">
+      <button type="submit">Felvétel</button>
+    </form>
+  </li>
+</ul>
+
+
+<h2>Új tárgy hozzáadása</h2>
+<form th:action="@{/api/subjects/add}" method="post">
+  <label for="subjectName">Tárgy neve:</label>
+  <input type="text" id="subjectName" name="name" required>
+  <button type="submit">Hozzáadás</button>
+</form>
+
+</body>
+</html>
